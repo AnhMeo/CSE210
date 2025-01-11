@@ -15,7 +15,15 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
+        {
+            "type": "PowerShell",
+            "request": "launch",
+            "name": "PowerShell Launch Script",
+            "script": "${file}",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+                
         {
             "name": "C# Prep 1",
             "type": "coreclr",
