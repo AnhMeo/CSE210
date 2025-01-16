@@ -6,12 +6,11 @@ class Program
     {
         Random randomGenerator = new Random();
         int number = randomGenerator.Next(1,101);
-        
+        int guesses = 0;
 
         Console.Write("What is your guess? ");
         int response = int.Parse(Console.ReadLine());
-
-        
+        guesses += 1;
 
         while (number != response)
         {
@@ -25,10 +24,10 @@ class Program
             }
             Console.Write("What is your guess? ");
             response = int.Parse(Console.ReadLine());
+            guesses += 1;
         }
         
-        
-        Console.WriteLine("Congratulations! You guessed correctly!");
+        Console.WriteLine($"Congratulations! You guessed correctly in {guesses} tries!");
         
 
 
