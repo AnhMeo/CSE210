@@ -4,6 +4,34 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Prep3 World!");
+        Random randomGenerator = new Random();
+        int number = randomGenerator.Next(1,101);
+        
+
+        Console.Write("What is your guess? ");
+        int response = int.Parse(Console.ReadLine());
+
+        
+
+        while (number != response)
+        {
+            if (number > response)
+            {
+            Console.WriteLine("Too low! Guess higher");
+            }
+            else
+            {
+            Console.WriteLine("Too high! Guess lower");
+            }
+            Console.Write("What is your guess? ");
+            response = int.Parse(Console.ReadLine());
+        }
+        
+        
+        Console.WriteLine("Congratulations! You guessed correctly!");
+        
+
+
+
     }
 }
