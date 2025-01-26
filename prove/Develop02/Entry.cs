@@ -1,13 +1,13 @@
 public class Entry
 {   
-    public DateTime theCurrentTime;
+    public DateTime _theCurrentTime;
     public string _dateText;
     public string _response;
      // Constructor to initialize the entry. I KEEP FORGETTING TO ADD THIS!!! 
     public Entry()
     {
-        theCurrentTime = DateTime.Now; 
-        _dateText = theCurrentTime.ToShortDateString(); 
+        _theCurrentTime = DateTime.Now; 
+        _dateText = _theCurrentTime.ToShortDateString(); 
         _response = ""; 
     }
 

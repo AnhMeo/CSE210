@@ -1,7 +1,7 @@
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>();
-    public List<string> prompts = new List<string>
+    public List<Entry> _entries = new List<Entry>();
+    public List<string> _prompts = new List<string>
     {
         "How did your day go?",
         "What are you grateful for today?",
@@ -12,25 +12,25 @@ public class Journal
     public Random random = new Random();
     public void DisplayPrompt()
     {
-        string randomPrompt = prompts[random.Next(prompts.Count)];
+        string randomPrompt = _prompts[random.Next(_prompts.Count)];
         Console.WriteLine(randomPrompt);
     }
 
     public void AddEntry(Entry entry)
     {
-        entries.Add(entry);
+        _entries.Add(entry);
     }
 
     // Display all the journal entries
     public void DisplayEntries()
     {
-        if (entries.Count == 0)
+        if (_entries.Count == 0)
         {
             Console.WriteLine("No entries yet.");
             return;
         }
 
-        foreach (var entry in entries)
+        foreach (var entry in _entries)
         {
             Console.WriteLine($"Date: {entry._dateText}");
             Console.WriteLine($"Response: {entry._response}");
@@ -45,7 +45,7 @@ public class Journal
     using (StreamWriter writer = new StreamWriter(fileName))
     {
         // Iterate through all the journal entries and write them to the file.
-        foreach (var entry in entries)
+        foreach (var entry in _entries)
         {
             writer.WriteLine($"Date: {entry._dateText}");
             writer.WriteLine($"Response: {entry._response}");
@@ -72,7 +72,7 @@ public class Journal
                 // If we already have an entry, save it before creating a new one
                 if (entry != null)
                 {
-                    entries.Add(entry);
+                    _entries.Add(entry);
                 }
 
                 // Create a new entry and assign the date
@@ -91,7 +91,7 @@ public class Journal
         // If there is an entry left after the loop, add it
         if (entry != null)
         {
-            entries.Add(entry);
+            _entries.Add(entry);
         }
         // Confirmation message!
         Console.WriteLine("Journal loaded successfully.");
@@ -99,7 +99,7 @@ public class Journal
 
     public void DeleteJournal()
 {
-    entries.Clear(); // Clears the entries list
+    _entries.Clear(); // Clears the entries list
     // Confirmation message!
     Console.WriteLine("The journal has been cleared.");
 }

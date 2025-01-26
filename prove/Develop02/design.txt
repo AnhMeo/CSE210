@@ -1,0 +1,92 @@
+
+Class 1: Journal
+Attributes:
+
+_entries (List<Entry>): Stores a collection of all journal entries.
+_prompts (List<string>): Stores a list of predefined prompts.
+Behaviors:
+
+DisplayPrompt(): Randomly selects a prompt from _prompts and displays it.
+AddEntry(Entry entry): Adds an Entry object to the _entries list.
+DisplayEntries(): Displays all entries in _entries with their date and response.
+SaveJournal(string fileName): Saves the list of entries to a file.
+LoadJournal(string fileName): Loads entries from a file into _entries.
+DeleteJournal(): Clears all entries from _entries.
+Class 2: Entry
+Attributes:
+
+_TheCurrentTime (DateTime): Stores the current time when the entry is created.
+_dateText (string): Stores the date of the entry (formatted as a string).
+_response (string): Stores the user’s response to the prompt.
+Behaviors:
+
+Enter(): Prompts the user for input and stores the response in _response.
+Constructor(): Initializes the Entry object with the current date and time.
+Inter-class Relationships and Interactions:
+Journal and Entry:
+
+The Journal class contains a list of Entry objects (_entries), representing a collection of journal entries.
+Journal creates and adds Entry objects when the user writes a new entry (via the AddEntry behavior).
+Journal displays individual Entry objects via the DisplayEntries behavior.
+Prompt Generation:
+
+The Journal class selects and displays a random prompt from the _prompts list via the DisplayPrompt() behavior.
+This interaction helps guide the user when they create new entries.
+Saving and Loading:
+
+The Journal class saves all entries to a text file via SaveJournal(), iterating through the _entries list and writing each entry’s date and response to a file.
+The Journal class loads entries from a text file via LoadJournal(), reading the file and creating new Entry objects with the saved data (date and response).
+Deleting:
+
+The Journal class removes all entries when the DeleteJournal() behavior is called, clearing the _entries list.
+Class Diagram Description:
+Journal:
+
+Contains a list of Entry objects (_entries).
+Holds a list of prompts (_prompts).
+Manages entry creation (AddEntry()), display (DisplayEntries()), saving (SaveJournal()), loading (LoadJournal()), and deletion (DeleteJournal()).
+Entry:
+
+Stores a timestamp (_TheCurrentTime), the entry date (_dateText), and the user's response (_response).
+Allows input through the Enter() method.
+Each entry is created with the current time via the constructor.
+
++----------------------------+                +------------------------+
+|         Journal             |                |         Entry           |
++----------------------------+                +------------------------+
+| - _entries: List<Entry>     |                | - _TheCurrentTime: DateTime |
+| - _prompts: List<string>    |                | - _dateText: string     |
++----------------------------+                | - _response: string     |
+| + DisplayPrompt(): void     |                +------------------------+
+| + AddEntry(entry): void     |                | + Enter(): void         |
+| + DisplayEntries(): void    |                | + Constructor(): void   |
+| + SaveJournal(fileName): void|                +------------------------+
+| + LoadJournal(fileName): void|
+| + DeleteJournal(): void     |
++----------------------------+
+       |              ^
+       |              |
+       |  contains    | creates
+       v              |
+  +---------------------------+
+  |         Entry              |
+  +---------------------------+
+
+(SORRY It's kind of ugly :(   But hopefully it helps show how things work together! )
+
+Interaction Diagram / Workflow:
+User Interaction:
+
+Step 1: The user selects an option from the main menu (Write, Display, Save, Load, Delete).
+Step 2: If the user selects "Write", the Journal calls DisplayPrompt() to show a random prompt.
+Step 3: The user enters a response. The Entry object captures the response via Enter().
+Step 4: The Journal adds the new Entry to the _entries list with AddEntry().
+Saving the Journal:
+
+The user selects "Save". The Journal calls SaveJournal(fileName) to save all entries to the file.
+Loading the Journal:
+
+The user selects "Load". The Journal calls LoadJournal(fileName) to load all entries from the file.
+Deleting the Journal:
+
+The user selects "Delete". The Journal calls DeleteJournal() to clear all entries from the _entries list.
