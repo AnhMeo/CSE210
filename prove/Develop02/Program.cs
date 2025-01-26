@@ -1,9 +1,62 @@
 using System;
+using System.Runtime.InteropServices.Marshalling;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop02 World!");
+        int selection = 0;
+        Journal journal = new Journal();
+
+        while (selection != 6)
+        {
+            Console.WriteLine("Please select one of the following choices:");
+            Console.WriteLine("1. Write");
+            Console.WriteLine("2. Display");
+            Console.WriteLine("3. Load");
+            Console.WriteLine("4. Save");
+            Console.WriteLine("5. Delete");
+            Console.WriteLine("6. Quit");
+            Console.Write("What would you like to do? ");
+            selection = int.Parse(Console.ReadLine());
+             
+
+
+            if (selection == 1)
+            {
+                Entry entry = new Entry();
+                journal.DisplayPrompt();
+                entry.Enter();
+                journal.AddEntry(entry);
+            }
+            else if (selection == 2)
+            {
+                journal.DisplayEntries();
+            }
+            else if (selection == 3)
+            {
+                Console.Write("Enter the file name to load the journal: ");
+                string fileName = Console.ReadLine(); // Get the file name from the user
+                journal.LoadJournal(fileName);
+            }
+            else if (selection == 4)
+            {
+                Console.Write("Enter the file name to save the journal: ");
+                string fileName = Console.ReadLine();
+                journal.SaveJournal(fileName);
+            }
+            else if (selection == 5)
+            {   
+                Console.Write("Are you sure you want to delete the contents of this journal? (Y/N): ");
+                string deleteResponse = Console.ReadLine();
+                if (deleteResponse == "Y")
+                {
+                    journal.DeleteJournal();
+                }
+            }
+            else{
+
+            }
+        }
     }
 }
