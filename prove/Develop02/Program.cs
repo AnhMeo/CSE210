@@ -7,7 +7,6 @@ class Program
     {
         int selection = 0;
         Journal journal = new Journal();
-
         while (selection != 6)
         {
             Console.WriteLine("Please select one of the following choices:");
@@ -20,8 +19,6 @@ class Program
             Console.Write("What would you like to do? ");
             selection = int.Parse(Console.ReadLine());
              
-
-
             if (selection == 1)
             {
                 Entry entry = new Entry();
@@ -48,14 +45,11 @@ class Program
             else if (selection == 5)
             {   
                 Console.Write("Are you sure you want to delete the contents of this journal? (Y/N): ");
-                string deleteResponse = Console.ReadLine();
+                string deleteResponse = (Console.ReadLine().ToUpper());
                 if (deleteResponse == "Y")
                 {
                     journal.DeleteJournal();
                 }
-            }
-            else{
-
             }
         }
     }
