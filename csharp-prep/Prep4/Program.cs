@@ -23,8 +23,7 @@ class Program
                 greatest = response;
             }
             Console.Write("Enter number: ");
-            response = int.Parse(Console.ReadLine());
-              
+            response = int.Parse(Console.ReadLine());     
         }
 
         length = numbers.Count;
