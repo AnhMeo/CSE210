@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices.Marshalling;
 
 class Program
@@ -18,8 +19,16 @@ class Program
             Console.WriteLine("5. Delete");
             Console.WriteLine("6. Quit");
             Console.Write("What would you like to do? ");
-            selection = int.Parse(Console.ReadLine());
-             
+            string stringSelection = Console.ReadLine();
+            try
+            {
+                selection = int.Parse(stringSelection);
+            }
+            catch
+            {
+            
+            }
+
             if (selection == 1)
             {
                 Entry entry = new Entry();
@@ -56,6 +65,9 @@ class Program
                 {
                     journal.DeleteJournal();
                 }
+            }
+            else{
+                Console.WriteLine("Invalid selection. Please enter a number (1-6)");
             }
         }
     }
