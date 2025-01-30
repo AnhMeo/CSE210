@@ -32,7 +32,7 @@ class Program
             if (selection == 1)
             {
                 Entry entry = new Entry();
-                journal.DisplayPrompt();
+                entry._prompt = journal.DisplayPrompt();
                 entry.Enter();
                 journal.AddEntry(entry);
             }

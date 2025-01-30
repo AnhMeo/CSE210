@@ -15,11 +15,12 @@ public class Journal
         "How did you take care of yourself today?",
         "What was the most interesting conversation you had today?"
     };
-    public Random _random = new Random();
-    public void DisplayPrompt()
+    public Random _random = new Random();   
+    public string DisplayPrompt()
     {
         string randomPrompt = _prompts[_random.Next(_prompts.Count)];
         Console.WriteLine(randomPrompt);
+        return randomPrompt;
     }
 
     public void AddEntry(Entry entry)
@@ -39,6 +40,7 @@ public class Journal
         foreach (var entry in _entries)
         {
             Console.WriteLine($"Date: {entry._dateText}");
+            Console.WriteLine($"Prompt: {entry._prompt}");
             Console.WriteLine($"Response: {entry._response}");
             // Just to separate the entries from each other for readability
             Console.WriteLine("-------------");
