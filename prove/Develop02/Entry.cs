@@ -3,7 +3,7 @@ public class Entry
     public DateTime _theCurrentTime;
     public string _dateText;
     public string _response;
-     // Constructor to initialize the entry. I KEEP FORGETTING TO ADD THIS!!! 
+     // Constructor to initialize the entry below.
     public Entry()
     {
         _theCurrentTime = DateTime.Now; 
