@@ -50,7 +50,7 @@ class Program
             else if (selection == 5)
             {   
                 Console.Write("Are you sure you want to delete the contents of this journal? (Y/N): ");
-                string deleteResponse = (Console.ReadLine().ToUpper());
+                string deleteResponse = Console.ReadLine().ToUpper();
 
                 if (deleteResponse == "Y")
                 {

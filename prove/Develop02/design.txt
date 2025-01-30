@@ -15,7 +15,7 @@ DeleteJournal(): Clears all entries from _entries.
 Class 2: Entry
 Attributes:
 
-_TheCurrentTime (DateTime): Stores the current time when the entry is created.
+_theCurrentTime (DateTime): Stores the current time when the entry is created.
 _dateText (string): Stores the date of the entry (formatted as a string).
 _response (string): Stores the user’s response to the prompt.
 Behaviors:

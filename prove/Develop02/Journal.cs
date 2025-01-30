@@ -15,10 +15,10 @@ public class Journal
         "How did you take care of yourself today?",
         "What was the most interesting conversation you had today?"
     };
-    public Random random = new Random();
+    public Random _random = new Random();
     public void DisplayPrompt()
     {
-        string randomPrompt = _prompts[random.Next(_prompts.Count)];
+        string randomPrompt = _prompts[_random.Next(_prompts.Count)];
         Console.WriteLine(randomPrompt);
     }
 
