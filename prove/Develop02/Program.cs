@@ -7,6 +7,7 @@ class Program
     {
         int selection = 0;
         Journal journal = new Journal();
+
         while (selection != 6)
         {
             Console.WriteLine("Please select one of the following choices:");
@@ -26,26 +27,31 @@ class Program
                 entry.Enter();
                 journal.AddEntry(entry);
             }
+
             else if (selection == 2)
             {
                 journal.DisplayEntries();
             }
+
             else if (selection == 3)
             {
                 Console.Write("Enter the file name to load the journal: ");
                 string fileName = Console.ReadLine(); // Get the file name from the user
                 journal.LoadJournal(fileName);
             }
+
             else if (selection == 4)
             {
                 Console.Write("Enter the file name to save the journal: ");
                 string fileName = Console.ReadLine();
                 journal.SaveJournal(fileName);
             }
+            
             else if (selection == 5)
             {   
                 Console.Write("Are you sure you want to delete the contents of this journal? (Y/N): ");
                 string deleteResponse = (Console.ReadLine().ToUpper());
+
                 if (deleteResponse == "Y")
                 {
                     journal.DeleteJournal();

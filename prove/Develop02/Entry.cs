@@ -1,5 +1,5 @@
 public class Entry
-{   
+{
     public DateTime _theCurrentTime;
     public string _dateText;
     public string _response;
@@ -11,7 +11,6 @@ public class Entry
         _response = ""; 
     }
 
-    
     public void Enter()
     {
         _response = Console.ReadLine();

@@ -1,13 +1,19 @@
 public class Journal
 {
     public List<Entry> _entries = new List<Entry>();
+
     public List<string> _prompts = new List<string>
     {
         "How did your day go?",
         "What are you grateful for today?",
         "What did you learn today?",
         "How are you feeling right now?",
-        "What was the highlight of your day?"
+        "What was the highlight of your day?",
+        "What is one challenge you faced today, and how did you handle it?",
+        "Describe a small moment today that made you smile.",
+        "What is something you're looking forward to today, and why?",
+        "How did you take care of yourself today?",
+        "What was the most interesting conversation you had today?"
     };
     public Random random = new Random();
     public void DisplayPrompt()
