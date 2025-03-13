@@ -15,7 +15,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("\nGoal Tracker Menu:");
+            Console.WriteLine("Goal Tracker Menu:");
             Console.WriteLine("1. Create a New Goal");
             Console.WriteLine("2. View Goals");
             Console.WriteLine("3. Record an Event");
