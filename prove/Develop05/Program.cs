@@ -148,7 +148,7 @@ class Program
         if (newRank > highestRankAchieved)
         {
             highestRankAchieved = newRank;
-            Console.WriteLine($"Congratulations! You ranked up to {rankColors[newRank]}{ranks[newRank]}\u001b[0m! 🎉");
+            Console.WriteLine($"Congratulations! You ranked up to {rankColors[newRank]}{ranks[newRank]}\u001b[0m!");
             SaveGoals(); // Save progress immediately after ranking up
         }
     }
