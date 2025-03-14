@@ -132,7 +132,7 @@ class Program
     private static void CheckForRankUp()
     {
         string[] ranks = { "Iron", "Bronze", "Silver", "Gold", "Platinum", "Emerald", "Ruby", "Diamond" };
-        string[] rankColors = { "\u001b[38;5;240m", "\u001b[38;5;130m", "\u001b[38;5;250m", "\u001b[38;5;220m", "\u001b[38;5;33m", "\u001b[38;5;34m", "\u001b[38;5;160m", "\u001b[38;5;201m" }; // ANSI colors
+        string[] rankColors = { "\u001b[38;5;240m", "\u001b[38;5;130m", "\u001b[38;5;250m", "\u001b[38;5;220m", "\u001b[38;5;33m", "\u001b[38;5;34m", "\u001b[38;5;160m", "\u001b[38;5;201m" }; // ANSI colors for each rank
 
         int[] rankThresholds = { 0, 100, 250, 625, 1560, 3900, 9750, 24375 }; // Graduated points needed for each rank (2.5X MORE each time)
 
@@ -149,7 +149,7 @@ class Program
         {
             highestRankAchieved = newRank;
             Console.WriteLine($"Congratulations! You ranked up to {rankColors[newRank]}{ranks[newRank]}\u001b[0m!");
-            SaveGoals(); // Save progress immediately after ranking up
+            SaveGoals(); // Save progress immediately after ranking up 
         }
     }
 
@@ -158,8 +158,8 @@ class Program
     {
         using (StreamWriter writer = new StreamWriter(fileName))
         {
-            writer.WriteLine(totalScore); // Save total score
-            writer.WriteLine(highestRankAchieved); // Save highest rank achieved
+            writer.WriteLine(totalScore); // Save total score 
+            writer.WriteLine(highestRankAchieved); // Save highest rank achieved 
 
             foreach (Goal goal in goals)
             {
@@ -175,8 +175,8 @@ class Program
         {
             goals.Clear();
             string[] lines = File.ReadAllLines(fileName);
-            totalScore = int.Parse(lines[0]); // Load total score
-            highestRankAchieved = int.Parse(lines[1]); // Load highest rank achieved
+            totalScore = int.Parse(lines[0]); // Load total score 
+            highestRankAchieved = int.Parse(lines[1]); // Load highest rank achieved 
             
             for (int i = 2; i < lines.Length; i++)
             {
@@ -222,7 +222,7 @@ class Program
             {
                 File.Delete(fileName);
                 totalScore = 0;
-                highestRankAchieved = -1; // Reset rank tracking
+                highestRankAchieved = -1; // Reset rank tracking 
                 goals.Clear();
                 Console.WriteLine("Goals file deleted successfully.");
             }
