@@ -4,10 +4,10 @@ using System.IO;
 
 class Program
 {
-    private static List<Goal> goals = new List<Goal>();
-    private static int totalScore = 0;
-    private static string fileName = "goals.txt";
-    private static int highestRankAchieved = -1; // Track the highest rank reached
+    private static List<Goal> Goals = new List<Goal>();
+    private static int TotalScore = 0;
+    private static string FileName = "goals.txt";
+    private static int HighestRankAchieved = -1; // Track the highest rank reached
 
     static void Main()
     {
@@ -37,7 +37,7 @@ class Program
                     RecordGoalEvent();
                     break;
                 case "4":
-                    Console.WriteLine($"\nTotal Score: {totalScore} points");
+                    Console.WriteLine($"\nTotal Score: {TotalScore} points");
                     break;
                 case "5":
                     DeleteGoalsFile();
@@ -70,17 +70,17 @@ class Program
         switch (choice)
         {
             case "1":
-                goals.Add(new SimpleGoal(name, points));
+                Goals.Add(new SimpleGoal(name, points));
                 break;
             case "2":
-                goals.Add(new EternalGoal(name, points));
+                Goals.Add(new EternalGoal(name, points));
                 break;
             case "3":
                 Console.Write("Enter target count: ");
                 int targetCount = int.Parse(Console.ReadLine());
                 Console.Write("Enter bonus points: ");
                 int bonusPoints = int.Parse(Console.ReadLine());
-                goals.Add(new ChecklistGoal(name, points, targetCount, bonusPoints));
+                Goals.Add(new ChecklistGoal(name, points, targetCount, bonusPoints));
                 break;
             default:
                 Console.WriteLine("Invalid choice.");
@@ -93,34 +93,34 @@ class Program
     private static void DisplayGoals()
     {
         Console.WriteLine("\nYour Goals:");
-        if (goals.Count == 0)
+        if (Goals.Count == 0)
         {
             Console.WriteLine("No goals added yet.");
             return;
         }
 
-        for (int i = 0; i < goals.Count; i++)
+        for (int i = 0; i < Goals.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {goals[i].GetStatus()}");
+            Console.WriteLine($"{i + 1}. {Goals[i].GetStatus()}");
         }
     }
 
     private static void RecordGoalEvent()
     {
         DisplayGoals();
-        if (goals.Count == 0) return;
+        if (Goals.Count == 0) return;
 
         Console.Write("\nEnter goal number to record an event: ");
         int index = int.Parse(Console.ReadLine()) - 1;
 
-        if (index >= 0 && index < goals.Count)
+        if (index >= 0 && index < Goals.Count)
         {
-            goals[index].RecordEvent();
-            if (goals[index] is ChecklistGoal checklistGoal && checklistGoal.IsComplete)
+            Goals[index].RecordEvent();
+            if (Goals[index] is ChecklistGoal checklistGoal && checklistGoal.IsComplete)
             {
-                totalScore += checklistGoal.BonusPoints;
+                TotalScore += checklistGoal.BonusPoints;
             }
-            totalScore += goals[index].Points;
+            TotalScore += Goals[index].Points;
             CheckForRankUp();
         }
         else
@@ -131,37 +131,36 @@ class Program
 
     private static void CheckForRankUp()
     {
-        string[] ranks = { "Iron", "Bronze", "Silver", "Gold", "Platinum", "Emerald", "Ruby", "Diamond" };
-        string[] rankColors = { "\u001b[38;5;240m", "\u001b[38;5;130m", "\u001b[38;5;250m", "\u001b[38;5;220m", "\u001b[38;5;33m", "\u001b[38;5;34m", "\u001b[38;5;160m", "\u001b[38;5;201m" }; // ANSI colors for each rank
+        string[] Ranks = { "Iron", "Bronze", "Silver", "Gold", "Platinum", "Emerald", "Ruby", "Diamond" };
+        string[] RankColors = { "\u001b[38;5;240m", "\u001b[38;5;130m", "\u001b[38;5;250m", "\u001b[38;5;220m", "\u001b[38;5;33m", "\u001b[38;5;34m", "\u001b[38;5;160m", "\u001b[38;5;201m" }; // ANSI colors for each rank
 
-        int[] rankThresholds = { 0, 100, 250, 625, 1560, 3900, 9750, 24375 }; // Graduated points needed for each rank (2.5X MORE each time)
+        int[] RankThresholds = { 0, 100, 250, 625, 1560, 3900, 9750, 24375 }; // Graduated points needed for each rank (2.5X MORE each time)
 
         int newRank = 0;
-        for (int i = 0; i < rankThresholds.Length; i++)
+        for (int i = 0; i < RankThresholds.Length; i++)
         {
-            if (totalScore >= rankThresholds[i])
+            if (TotalScore >= RankThresholds[i])
                 newRank = i;
             else
                 break;
         }
 
-        if (newRank > highestRankAchieved)
+        if (newRank > HighestRankAchieved)
         {
-            highestRankAchieved = newRank;
-            Console.WriteLine($"Congratulations! You ranked up to {rankColors[newRank]}{ranks[newRank]}\u001b[0m!");
+            HighestRankAchieved = newRank;
+            Console.WriteLine($"Congratulations! You ranked up to {RankColors[newRank]}{Ranks[newRank]}\u001b[0m!");
             SaveGoals(); // Save progress immediately after ranking up 
         }
     }
 
-
     private static void SaveGoals()
     {
-        using (StreamWriter writer = new StreamWriter(fileName))
+        using (StreamWriter writer = new StreamWriter(FileName))
         {
-            writer.WriteLine(totalScore); // Save total score 
-            writer.WriteLine(highestRankAchieved); // Save highest rank achieved 
+            writer.WriteLine(TotalScore); // Save total score 
+            writer.WriteLine(HighestRankAchieved); // Save highest rank achieved 
 
-            foreach (Goal goal in goals)
+            foreach (Goal goal in Goals)
             {
                 writer.WriteLine(goal.ToSaveFormat());
             }
@@ -171,12 +170,12 @@ class Program
 
     private static void LoadGoals()
     {
-        if (File.Exists(fileName))
+        if (File.Exists(FileName))
         {
-            goals.Clear();
-            string[] lines = File.ReadAllLines(fileName);
-            totalScore = int.Parse(lines[0]); // Load total score 
-            highestRankAchieved = int.Parse(lines[1]); // Load highest rank achieved 
+            Goals.Clear();
+            string[] lines = File.ReadAllLines(FileName);
+            TotalScore = int.Parse(lines[0]); // Load total score 
+            HighestRankAchieved = int.Parse(lines[1]); // Load highest rank achieved 
             
             for (int i = 2; i < lines.Length; i++)
             {
@@ -189,18 +188,18 @@ class Program
                 if (goalType == "SimpleGoal")
                 {
                     bool isComplete = bool.Parse(parts[3]);
-                    goals.Add(new SimpleGoal(name, points, isComplete));
+                    Goals.Add(new SimpleGoal(name, points, isComplete));
                 }
                 else if (goalType == "EternalGoal")
                 {
-                    goals.Add(new EternalGoal(name, points));
+                    Goals.Add(new EternalGoal(name, points));
                 }
                 else if (goalType == "ChecklistGoal")
                 {
                     int target = int.Parse(parts[3]);
                     int timesCompleted = int.Parse(parts[4]);
                     int bonus = int.Parse(parts[5]);
-                    goals.Add(new ChecklistGoal(name, points, target, bonus, timesCompleted));
+                    Goals.Add(new ChecklistGoal(name, points, target, bonus, timesCompleted));
                 }
             }
             Console.WriteLine("Goals loaded successfully!");
@@ -213,17 +212,17 @@ class Program
 
     private static void DeleteGoalsFile()
     {
-        if (File.Exists(fileName))
+        if (File.Exists(FileName))
         {
             Console.Write("Are you sure you want to delete all goals? (y/n): ");
             string response = Console.ReadLine().ToLower();
 
             if (response == "y")
             {
-                File.Delete(fileName);
-                totalScore = 0;
-                highestRankAchieved = -1; // Reset rank tracking 
-                goals.Clear();
+                File.Delete(FileName);
+                TotalScore = 0;
+                HighestRankAchieved = -1; // Reset rank tracking 
+                Goals.Clear();
                 Console.WriteLine("Goals file deleted successfully.");
             }
             else

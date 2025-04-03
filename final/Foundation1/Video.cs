@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public class Video
 {
-    public string Title;
-    public string Author;
-    public int Length;
-    public List<Comment> Comments = new List<Comment>();
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public int Length { get; set; }
+    public List<Comment> Comments { get; set; } = new List<Comment>();
 
     public Video(string title, string author, int length)
     {
