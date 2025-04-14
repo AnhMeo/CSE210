@@ -19,25 +19,25 @@ class Program
             Console.WriteLine(num);
         }
 
-
+        //
         List<Rpsls.Hand> hands1 = new() { Rpsls.Hand.Rock, Rpsls.Hand.Paper };
         Console.WriteLine("--- Rock vs Paper ---");
-        foreach (var hand in RpslsSorting.SortHands(hands1))
+        foreach (Rpsls.Hand hand in RpslsSorting.SortHands(hands1))
             Console.WriteLine(hand);
 
         List<Rpsls.Hand> hands2 = new() { Rpsls.Hand.Rock, Rpsls.Hand.Paper, Rpsls.Hand.Scissors };
         Console.WriteLine("--- Rock vs Paper vs Scissors---");
-        foreach (var hand in RpslsSorting.SortHands(hands2))
+        foreach (Rpsls.Hand hand in RpslsSorting.SortHands(hands2))
             Console.WriteLine(hand);
 
         List<Rpsls.Hand> hands3 = new() { Rpsls.Hand.Scissors, Rpsls.Hand.Paper, Rpsls.Hand.Rock };
         Console.WriteLine("--- Scissors vs Paper vs Rock ---");
-        foreach (var hand in RpslsSorting.SortHands(hands3))
+        foreach (Rpsls.Hand hand in RpslsSorting.SortHands(hands3))
             Console.WriteLine(hand);
         //please work
         List<Rpsls.Hand> hands4 = new() { Rpsls.Hand.Spock, Rpsls.Hand.Lizard, Rpsls.Hand.Paper };
         Console.WriteLine("--- Spock vs Lizard vs Paper ---");
-        foreach (var hand in RpslsSorting.SortHands(hands4))
+        foreach (Rpsls.Hand hand in RpslsSorting.SortHands(hands4))
             Console.WriteLine(hand);
         //YES!!!!
         
